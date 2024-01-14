@@ -55,13 +55,13 @@ const KEY_UP = 38;
 const KEY_RIGHT = 39;
 const KEY_DOWN = 40;
 function direction(event){
-    if(event.keyCode === KEY_LEFT && dir !=="right")
+    if((event.keyCode === KEY_LEFT && dir !=="right") || event.key === 'a')
         dir = "left";
-    else if(event.keyCode === KEY_UP && dir !=="down")
+    else if((event.keyCode === KEY_UP && dir !=="down") || event.key === 'w')
         dir = "up";
-    else if(event.keyCode === KEY_RIGHT && dir !=="left")
+    else if((event.keyCode === KEY_RIGHT && dir !=="left") || event.key === 'd')
         dir = "right";
-    else if(event.keyCode === KEY_DOWN && dir !=="up")
+    else if((event.keyCode === KEY_DOWN && dir !=="up") || event.key === 's')
         dir = "down";
 }
 

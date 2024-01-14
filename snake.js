@@ -50,14 +50,18 @@ const reload = () => {
 };
 
 let dir;
+const KEY_LEFT = 37;
+const KEY_UP = 38;
+const KEY_RIGHT = 39;
+const KEY_DOWN = 40;
 function direction(event){
-    if(event.keyCode === 37 && dir !=="right")
+    if(event.keyCode === KEY_LEFT && dir !=="right")
         dir = "left";
-    else if(event.keyCode === 38 && dir !=="down")
+    else if(event.keyCode === KEY_UP && dir !=="down")
         dir = "up";
-    else if(event.keyCode === 39 && dir !=="left")
+    else if(event.keyCode === KEY_RIGHT && dir !=="left")
         dir = "right";
-    else if(event.keyCode === 40 && dir !=="up")
+    else if(event.keyCode === KEY_DOWN && dir !=="up")
         dir = "down";
 }
 

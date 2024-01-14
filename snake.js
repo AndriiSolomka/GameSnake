@@ -167,16 +167,14 @@ let gameSpeed = 100;
 
 // Set snake color and game speed
 function setSpeed(mode) {
-    if (mode === 'low') {
-        gameSpeed = 150;
-        snakeColor = "yellow";
-    } else if (mode === 'normal') {
-        gameSpeed = 100;
-        snakeColor = "green";
-    } else if (mode === 'high') {
-        gameSpeed = 50;
-        snakeColor = "red";
-    }
+    const speedConfig = {
+        low: { speed: 150, color: "yellow" },
+        normal: { speed: 100, color: "green" },
+        high: { speed: 50, color: "red" },
+    };
+    const {speed, color} = speedConfig[mode];
+    gameSpeed = speed;
+    snakeColor = color;
 
     clearInterval(game);
     game = setInterval(drawSnakeGame, gameSpeed);

@@ -12,7 +12,7 @@ snakeView.src = "image/snake.png";
 
 let boxLength = 32;
 let score = 0;
-
+let record = 0;
 
 const localStorageRecordKey = 'snakeGameRecord';
 

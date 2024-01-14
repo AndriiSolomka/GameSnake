@@ -25,10 +25,13 @@ let snakefood = {
     y: Math.floor((Math.random() * playFieldHeight + extraHeightPlayArea)) * boxLength,
 };
 
+const startSnakeXpos = 9;
+const startSnakeYpos = 10;
+
 let snake = [];
 snake[0] ={
-    x: 9 * boxLength,
-    y: 10 * boxLength,
+    x: startSnakeXpos * boxLength,
+    y: startSnakeYpos * boxLength,
 };
 
 document.addEventListener("keydown", direction);
@@ -37,11 +40,6 @@ document.addEventListener("keydown", direction);
 const reload = () => {
     clearInterval(game);
     location.reload();
-};
-const handleGameOver = () => {
-    clearInterval(game);
-    alert( `You have lost😢\n  Try again😊`);
-    reload();
 };
 
 let dir;
@@ -97,8 +95,8 @@ function drawSnakeGame(){
         snake.pop();
     }
 
-    if(snakeX < boxLength || snakeX > boxLength * 17
-        || snakeY < 3 * boxLength || snakeY > boxLength * 17)
+    if(snakeX < boxLength || snakeX > boxLength * playFieldWidth
+        || snakeY < extraHeightPlayArea * boxLength || snakeY > boxLength * playFieldWidth)
         handleGameOver();
 
     if(dir === "left") snakeX -=boxLength;
@@ -116,5 +114,10 @@ function drawSnakeGame(){
 
 }
 
+const handleGameOver = () => {
+    clearInterval(game);
+    alert( `You have lost😢\n  Try again😊`);
+    reload();
+};
 
 let game = setInterval(drawSnakeGame, 100);

@@ -21,7 +21,6 @@ if (localStorage.getItem(localStorageRecordKey)) {
     record = parseInt(localStorage.getItem(localStorageRecordKey), 10);
 }
 
-
 const playFieldWidth = 17;
 const playFieldHeight = 15;
 const fieldDimensions = 18;
@@ -81,9 +80,7 @@ function drawSnakeGame(){
     ctx.drawImage(gameField, 0, 0);
     ctx.drawImage(food,snakefood.x, snakefood.y);
 
-
     for(let i = 0; i < snake.length; i++){
-
         if(i === 0){
             ctx.drawImage(snakeView,snake[i].x, snake[i].y, boxLength, boxLength );
         } else {
@@ -97,6 +94,7 @@ function drawSnakeGame(){
         ctx.font = size + " Arial";
         ctx.fillText(text, x, y);
     }
+
     const scoreTextX = 2;
     const scoreTextY = 1.8;
     const recordTextX = 10;
@@ -104,7 +102,6 @@ function drawSnakeGame(){
 
     drawText(score, "yellow", "60px", boxLength * scoreTextX, boxLength * scoreTextY);
     drawText("Record: " + record, "pink", "40px", boxLength * recordTextX, boxLength * recordTextY);
-
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;

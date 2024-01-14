@@ -16,6 +16,7 @@ let record = 0;
 
 const localStorageRecordKey = 'snakeGameRecord';
 
+// Check for existing record in localStorage
 if (localStorage.getItem(localStorageRecordKey)) {
     record = parseInt(localStorage.getItem(localStorageRecordKey), 10);
 }
@@ -27,11 +28,13 @@ const fieldDimensions = 18;
 const extraWidthPlayArea = fieldDimensions - playFieldWidth;
 const extraHeightPlayArea = fieldDimensions - playFieldHeight;
 
+// Initialize snake food at random position
 let snakefood = {
     x: Math.floor((Math.random() * playFieldWidth + extraWidthPlayArea)) * boxLength,
     y: Math.floor((Math.random() * playFieldHeight + extraHeightPlayArea)) * boxLength,
 };
 
+// Initial snake position
 const startSnakeXpos = 9;
 const startSnakeYpos = 10;
 
@@ -43,17 +46,14 @@ snake[0] ={
 
 document.addEventListener("keydown", direction);
 
-
-const reload = () => {
-    clearInterval(game);
-    location.reload();
-};
-
-let dir;
+//JavaScript Key Code
 const KEY_LEFT = 37;
 const KEY_UP = 38;
 const KEY_RIGHT = 39;
 const KEY_DOWN = 40;
+
+// Handle key presses
+let dir;
 function direction(event){
     if((event.keyCode === KEY_LEFT && dir !=="right") || event.key === 'a')
         dir = "left";
@@ -65,6 +65,7 @@ function direction(event){
         dir = "down";
 }
 
+// Check for collision with the tail
 function eatTail(head, snakeTail){
     for (let i = 0; i < snakeTail.length; i++) {
         if(head.x === snakeTail[i].x && head.y === snakeTail[i].y) {
@@ -73,6 +74,7 @@ function eatTail(head, snakeTail){
     }
 }
 
+// Draw the game on the canvas
 function drawSnakeGame(){
     ctx.drawImage(gameField, 0, 0);
     ctx.drawImage(food,snakefood.x, snakefood.y);
@@ -134,21 +136,29 @@ function drawSnakeGame(){
 
 }
 
+// Reload the game
+const reload = () => {
+    clearInterval(game);
+    location.reload();
+};
+
+// Handle game over
 const handleGameOver = () => {
     clearInterval(game);
     alert( `You have lost☠️\nJust try again😎\nYour score ${score} 👏\nYour record ${record} 💪`);
     reload();
 };
 
+// Reset the record
 const resetRecord = () => {
     record = 0;
     localStorage.setItem(localStorageRecordKey, record);
 };
 
-
 let snakeColor = "green";
 let gameSpeed = 100;
 
+// Set snake color and game speed
 function setSpeed(mode) {
     if (mode === 'low') {
         gameSpeed = 150;
@@ -164,5 +174,7 @@ function setSpeed(mode) {
     clearInterval(game);
     game = setInterval(drawSnakeGame, gameSpeed);
 }
+
+// Initial game setup
 let game = setInterval(drawSnakeGame, 100);
 setSpeed('normal');

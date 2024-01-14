@@ -79,7 +79,7 @@ function drawSnakeGame(){
         if(i === 0){
             ctx.drawImage(snakeView,snake[i].x, snake[i].y, boxLength, boxLength );
         } else {
-            ctx.fillStyle = snakeColor ;
+            ctx.fillStyle = snakeColor;
             ctx.fillRect(snake[i].x, snake[i].y, boxLength, boxLength);
         }
     }

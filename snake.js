@@ -28,22 +28,32 @@ snake[0] ={
 document.addEventListener("keydown", direction);
 
 
+const reload = () => {
+    clearInterval(game);
+    location.reload();
+};
+const handleGameOver = () => {
+    clearInterval(game);
+    alert( `You have lost😢\n  Try again😊`);
+    reload();
+};
+
 let dir;
 function direction(event){
-    if(event.keyCode === 37 && dir !="right")
+    if(event.keyCode === 37 && dir !=="right")
         dir = "left";
-    else if(event.keyCode === 38 && dir !="down")
+    else if(event.keyCode === 38 && dir !=="down")
         dir = "up";
-    else if(event.keyCode === 39 && dir !="left")
+    else if(event.keyCode === 39 && dir !=="left")
         dir = "right";
-    else if(event.keyCode === 40 && dir !="up")
+    else if(event.keyCode === 40 && dir !=="up")
         dir = "down";
 }
 
 function eatTail(head, snakeTail){
     for (let i = 0; i < snakeTail.length; i++) {
         if(head.x === snakeTail[i].x && head.y === snakeTail[i].y) {
-            clearInterval(game);
+            handleGameOver();
         }
     }
 }
@@ -83,7 +93,7 @@ function drawSnakeGame(){
 
     if(snakeX < boxLength || snakeX > boxLength * 17
         || snakeY < 3 * boxLength || snakeY > boxLength * 17)
-        clearInterval(game);
+        handleGameOver();
 
     if(dir === "left") snakeX -=boxLength;
     if(dir === "right") snakeX +=boxLength;

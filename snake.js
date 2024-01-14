@@ -10,7 +10,7 @@ food.src = "image/food.png";
 const snakeView = new Image();
 snakeView.src = "image/snake.png";
 
-let boxLength = 32;
+const boxLength = 32;
 let score = 0;
 let record = 0;
 

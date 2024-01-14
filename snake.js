@@ -132,7 +132,7 @@ function drawSnakeGame(){
 
 const handleGameOver = () => {
     clearInterval(game);
-    alert( `You have lost☠️\nJust try again😎`);
+    alert( `You have lost☠️\nJust try again😎\nYour score ${score} 👏\nYour record ${record} 💪`);
     reload();
 };
 

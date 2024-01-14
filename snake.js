@@ -47,21 +47,23 @@ snake[0] ={
 document.addEventListener("keydown", direction);
 
 //JavaScript Key Code
-const KEY_LEFT = 37;
-const KEY_UP = 38;
-const KEY_RIGHT = 39;
-const KEY_DOWN = 40;
+const KEY_CODES = {
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+};
 
 // Handle key presses
 let dir;
 function direction(event){
-    if((event.keyCode === KEY_LEFT && dir !=="right") || event.key === 'a')
+    if((event.keyCode === KEY_CODES.LEFT && dir !=="right") || event.key === 'a')
         dir = "left";
-    else if((event.keyCode === KEY_UP && dir !=="down") || event.key === 'w')
+    else if((event.keyCode === KEY_CODES.UP && dir !=="down") || event.key === 'w')
         dir = "up";
-    else if((event.keyCode === KEY_RIGHT && dir !=="left") || event.key === 'd')
+    else if((event.keyCode === KEY_CODES.RIGHT && dir !=="left") || event.key === 'd')
         dir = "right";
-    else if((event.keyCode === KEY_DOWN && dir !=="up") || event.key === 's')
+    else if((event.keyCode === KEY_CODES.DOWN && dir !=="up") || event.key === 's')
         dir = "down";
 }
 

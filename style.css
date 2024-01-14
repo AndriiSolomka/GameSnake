@@ -1,0 +1,15 @@
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+html {
+    background-image: url(image/fon.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

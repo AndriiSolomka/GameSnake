@@ -92,13 +92,14 @@ function drawSnakeGame(){
         }
     }
 
-    ctx.fillStyle = "yellow";
-    ctx.font = "60px Arial";
-    ctx.fillText(score, boxLength * 2, boxLength * 1.8);
+    function drawText(text, color, size, x, y) {
+        ctx.fillStyle = color;
+        ctx.font = size + " Arial";
+        ctx.fillText(text, x, y);
+    }
 
-    ctx.fillStyle = "pink";
-    ctx.font = "40px Arial";
-    ctx.fillText("Record: " + record, boxLength * 10, boxLength * 1.8);
+    drawText(score, "yellow", "60px", boxLength * 2, boxLength * 1.8);
+    drawText("Record: " + record, "pink", "40px", boxLength * 10, boxLength * 1.8);
 
 
     let snakeX = snake[0].x;

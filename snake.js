@@ -14,9 +14,15 @@ let boxLength = 32;
 let score = 0;
 
 
-let snakefood= {
-    x: Math.floor((Math.random()*17+1)) * boxLength,
-    y: Math.floor((Math.random()*15+3)) * boxLength,
+const playFieldWidth = 17;
+const playFieldHeight = 15;
+const fieldDimensions = 18;
+const extraWidthPlayArea = fieldDimensions - playFieldWidth;
+const extraHeightPlayArea = fieldDimensions - playFieldHeight;
+
+let snakefood = {
+    x: Math.floor((Math.random() * playFieldWidth + extraWidthPlayArea)) * boxLength,
+    y: Math.floor((Math.random() * playFieldHeight + extraHeightPlayArea)) * boxLength,
 };
 
 let snake = [];

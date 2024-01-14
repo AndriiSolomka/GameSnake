@@ -14,8 +14,8 @@ html {
     background-size: cover;
 }
 #speed-buttons {
-    text-align: center; /* Выравниваем кнопки по центру */
-    margin-top: 20px; /* Расстояние сверху */
+    text-align: center;
+    margin-top: 20px;
 }
 
 #speed-buttons button {
@@ -30,5 +30,20 @@ html {
 }
 
 #speed-buttons button:hover {
+    background-color: #45a049;
+}
+
+#reset-record-button button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reset-record-button button:hover {
     background-color: #45a049;
 }

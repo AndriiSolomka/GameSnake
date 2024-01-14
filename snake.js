@@ -112,7 +112,7 @@ function drawSnakeGame(){
             record = score;
             localStorage.setItem(localStorageRecordKey, record);
         }
-        score++;
+
         snakefood = {
             x: Math.floor((Math.random()*playFieldWidth + extraWidthPlayArea)) * boxLength,
             y: Math.floor((Math.random()*playFieldHeight + extraHeightPlayArea)) * boxLength,

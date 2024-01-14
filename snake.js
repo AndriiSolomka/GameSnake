@@ -14,6 +14,13 @@ let boxLength = 32;
 let score = 0;
 
 
+const localStorageRecordKey = 'snakeGameRecord';
+
+if (localStorage.getItem(localStorageRecordKey)) {
+    record = parseInt(localStorage.getItem(localStorageRecordKey), 10);
+}
+
+
 const playFieldWidth = 17;
 const playFieldHeight = 15;
 const fieldDimensions = 18;
@@ -79,17 +86,26 @@ function drawSnakeGame(){
 
     ctx.fillStyle = "yellow";
     ctx.font = "60px Arial";
-    ctx.fillText(score, boxLength * 2, boxLength * 1.8)
+    ctx.fillText(score, boxLength * 2, boxLength * 1.8);
+
+    ctx.fillStyle = "pink";
+    ctx.font = "40px Arial";
+    ctx.fillText("Record: " + record, boxLength * 10, boxLength * 1.8);
 
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
-    if(snakeX === snakefood.x && snakeY === snakefood.y){
+    if (snakeX === snakefood.x && snakeY === snakefood.y) {
+        score++;
+        if (score > record) {
+            record = score;
+            localStorage.setItem(localStorageRecordKey, record);
+        }
         score++;
         snakefood = {
-            x: Math.floor((Math.random()*17+1)) * boxLength,
-            y: Math.floor((Math.random()*15+3)) * boxLength,
+            x: Math.floor((Math.random()*playFieldWidth + extraWidthPlayArea)) * boxLength,
+            y: Math.floor((Math.random()*playFieldHeight + extraHeightPlayArea)) * boxLength,
         };
     } else {
         snake.pop();

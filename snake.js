@@ -16,7 +16,7 @@ let score = 0;
 
 let snakefood= {
     x: Math.floor((Math.random()*17+1)) * boxLength,
-    y: Math.floor((Math.random()*15+1)) * boxLength,
+    y: Math.floor((Math.random()*15+3)) * boxLength,
 };
 
 let snake = [];
@@ -75,7 +75,7 @@ function drawSnakeGame(){
         score++;
         snakefood = {
             x: Math.floor((Math.random()*17+1)) * boxLength,
-            y: Math.floor((Math.random()*15+1)) * boxLength,
+            y: Math.floor((Math.random()*15+3)) * boxLength,
         };
     } else {
         snake.pop();

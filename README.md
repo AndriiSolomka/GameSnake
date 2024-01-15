@@ -31,7 +31,7 @@ Reset Record: Reset your highest score to challenge yourself anew.
 ## How to Play
 
 Use arrow keys or alternative keys (W, A, S, D) to control the snake's direction.
-Eat the food (represented by a yellow block) to grow longer and earn points.
+Eat the food (represented like red apple) to grow longer and earn points.
 Avoid colliding with the boundaries or the snake's own tail.
 Try to achieve the highest score and beat your own record.
 

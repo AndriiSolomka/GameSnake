@@ -21,16 +21,21 @@ if (localStorage.getItem(localStorageRecordKey)) {
     record = parseInt(localStorage.getItem(localStorageRecordKey), 10);
 }
 
-const playFieldWidth = 17;
-const playFieldHeight = 15;
-const fieldDimensions = 18;
-const extraWidthPlayArea = fieldDimensions - playFieldWidth;
-const extraHeightPlayArea = fieldDimensions - playFieldHeight;
+const playField = {
+    width: 17,
+    height: 15,
+    dimensions: 18,
+}
+
+const extraPlayArea = {
+    width: playField.dimensions - playField.width,
+    height: playField.dimensions - playField.height,
+};
 
 // Initialize snake food at random position
 let snakefood = {
-    x: Math.floor((Math.random() * playFieldWidth + extraWidthPlayArea)) * boxLength,
-    y: Math.floor((Math.random() * playFieldHeight + extraHeightPlayArea)) * boxLength,
+    x: Math.floor((Math.random() * playField.width + extraPlayArea.width)) * boxLength,
+    y: Math.floor((Math.random() * playField.height +  extraPlayArea.height)) * boxLength,
 };
 
 // Initial snake position
@@ -95,13 +100,19 @@ function drawSnakeGame(){
         ctx.fillText(text, x, y);
     }
 
-    const scoreTextX = 2;
-    const scoreTextY = 1.8;
-    const recordTextX = 10;
-    const recordTextY = 1.8;
+    const textCoordinates = {
+        score: {
+            x: 2,
+            y: 1.8,
+        },
+        record: {
+            x: 10,
+            y: 1.8,
+        },
+    };
 
-    drawText(score, "yellow", "60px", boxLength * scoreTextX, boxLength * scoreTextY);
-    drawText("Record: " + record, "pink", "40px", boxLength * recordTextX, boxLength * recordTextY);
+    drawText(score, "yellow", "60px", boxLength * textCoordinates.score.x, boxLength * textCoordinates.score.y);
+    drawText("Record: " + record, "pink", "40px", boxLength * textCoordinates.record.x, boxLength * textCoordinates.record.y);
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
@@ -114,15 +125,15 @@ function drawSnakeGame(){
         }
 
         snakefood = {
-            x: Math.floor((Math.random()*playFieldWidth + extraWidthPlayArea)) * boxLength,
-            y: Math.floor((Math.random()*playFieldHeight + extraHeightPlayArea)) * boxLength,
+            x: Math.floor((Math.random()* playField.width + extraPlayArea.width)) * boxLength,
+            y: Math.floor((Math.random()* playField.height +  extraPlayArea.height)) * boxLength,
         };
     } else {
         snake.pop();
     }
 
-    if(snakeX < boxLength || snakeX > boxLength * playFieldWidth
-        || snakeY < extraHeightPlayArea * boxLength || snakeY > boxLength * playFieldWidth)
+    if(snakeX < boxLength || snakeX > boxLength * playField.width
+        || snakeY < extraPlayArea.height * boxLength || snakeY > boxLength * playField.width)
         handleGameOver();
 
     if(dir === "left") snakeX -=boxLength;

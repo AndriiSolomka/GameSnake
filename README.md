@@ -1,5 +1,10 @@
 Welcome to my Snake Game project! This is a classic Snake game built using HTML, CSS, and JavaScript.
 
+### YouTube Video
+
+Check out the gameplay and how the code works on my [YouTube channel](https://youtu.be/lW55lMIUh08). Don't forget to like and subscribe!
+
+
 ## Table of Contents
 - [Snake Game](#snake-game)
   - [Introduction](#introduction)

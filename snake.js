@@ -26,7 +26,6 @@ const playField = {
     height: 15,
     dimensions: 18,
 }
-
 const extraPlayArea = {
     width: playField.dimensions - playField.width,
     height: playField.dimensions - playField.height,
@@ -35,7 +34,7 @@ const extraPlayArea = {
 // Initialize snake food at random position
 let snakefood = {
     x: Math.floor((Math.random() * playField.width + extraPlayArea.width)) * boxLength,
-    y: Math.floor((Math.random() * playField.height +  extraPlayArea.height)) * boxLength,
+    y: Math.floor((Math.random() * playField.height + extraPlayArea.height)) * boxLength,
 };
 
 // Initial snake position
@@ -126,7 +125,7 @@ function drawSnakeGame(){
 
         snakefood = {
             x: Math.floor((Math.random()* playField.width + extraPlayArea.width)) * boxLength,
-            y: Math.floor((Math.random()* playField.height +  extraPlayArea.height)) * boxLength,
+            y: Math.floor((Math.random()* playField.height + extraPlayArea.height)) * boxLength,
         };
     } else {
         snake.pop();

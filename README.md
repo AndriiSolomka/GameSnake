@@ -1,4 +1,4 @@
-Welcome to my Snake Game project! This is a classic Snake game built using HTML, CSS, and JavaScript.
+Welcome to my **Snake Game** project! This is a classic Snake game built using HTML, CSS, and JavaScript.
 
 ### YouTube Video
 

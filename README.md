@@ -38,7 +38,7 @@ Try to achieve the highest score and beat your own record.
 ## Customization
 
 
-Adjust the game speed by clicking on the corresponding buttons:
+Adjust the game speed by clicking on the corresponding [buttons](https://www.youtube.com/watch?v=lW55lMIUh08&ab_channel=%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9%D0%A1%D0%BE%D0%BB%D0%BE%D0%BC%D0%BA%D0%B0):
 
 - **Low Speed**
 - **Normal Speed**

@@ -80,74 +80,123 @@ function eatTail(head, snakeTail){
 }
 
 // Draw the game on the canvas
-function drawSnakeGame(){
-    ctx.drawImage(gameField, 0, 0);
-    ctx.drawImage(food,snakefood.x, snakefood.y);
+function drawSnakeGame() {
+    drawBackground();
+    drawFood();
+    drawSnake();
+    drawScore();
+    updateSnakePosition();
+}
 
-    for(let i = 0; i < snake.length; i++){
-        if(i === 0){
-            ctx.drawImage(snakeView,snake[i].x, snake[i].y, boxLength, boxLength );
+function drawBackground() {
+    ctx.drawImage(gameField, 0, 0);
+}
+
+function drawFood() {
+    ctx.drawImage(food, snakefood.x, snakefood.y);
+}
+
+function drawSnake() {
+    for (let i = 0; i < snake.length; i++) {
+        if (i === 0) {
+            ctx.drawImage(snakeView, snake[i].x, snake[i].y, boxLength, boxLength);
         } else {
-            ctx.fillStyle = snakeColor;
-            ctx.fillRect(snake[i].x, snake[i].y, boxLength, boxLength);
+            drawSnakeSegment(snake[i].x, snake[i].y);
         }
     }
+}
 
-    function drawText(text, color, size, x, y) {
-        ctx.fillStyle = color;
-        ctx.font = size + " Arial";
-        ctx.fillText(text, x, y);
-    }
+function drawSnakeSegment(x, y) {
+    ctx.fillStyle = snakeColor;
+    ctx.fillRect(x, y, boxLength, boxLength);
+}
 
-    const textCoordinates = {
-        score: {
-            x: 2,
-            y: 1.8,
-        },
-        record: {
-            x: 10,
-            y: 1.8,
-        },
-    };
-
+function drawScore() {
     drawText(score, "yellow", "60px", boxLength * textCoordinates.score.x, boxLength * textCoordinates.score.y);
     drawText("Record: " + record, "pink", "40px", boxLength * textCoordinates.record.x, boxLength * textCoordinates.record.y);
+}
 
+function updateSnakePosition() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
-    if (snakeX === snakefood.x && snakeY === snakefood.y) {
-        score++;
-        if (score > record) {
-            record = score;
-            localStorage.setItem(localStorageRecordKey, record);
-        }
+    handleFoodCollision(snakeX, snakeY);
 
-        snakefood = {
-            x: Math.floor((Math.random()* playField.width + extraPlayArea.width)) * boxLength,
-            y: Math.floor((Math.random()* playField.height + extraPlayArea.height)) * boxLength,
-        };
+    if (checkCollision(snakeX, snakeY)) {
+        handleGameOver();
+    }
+
+    moveSnake(snakeX, snakeY);
+    eatTail();
+}
+
+function handleFoodCollision(snakeX, snakeY) {
+    if (snakeX === snakefood.x && snakeY === snakefood.y) {
+        increaseScore();
+        updateRecord();
+        generateNewFoodPosition();
     } else {
         snake.pop();
     }
+}
 
-    if(snakeX < boxLength || snakeX > boxLength * playField.width
-        || snakeY < extraPlayArea.height * boxLength || snakeY > boxLength * playField.width)
-        handleGameOver();
+function increaseScore() {
+    score++;
+}
 
-    if(dir === "left") snakeX -=boxLength;
-    if(dir === "right") snakeX +=boxLength;
-    if(dir === "up") snakeY -=boxLength;
-    if(dir === "down") snakeY +=boxLength;
+function updateRecord() {
+    if (score > record) {
+        record = score;
+        localStorage.setItem(localStorageRecordKey, record);
+    }
+}
 
-    let newSnakeLength ={
+function generateNewFoodPosition() {
+    snakefood = {
+        x: Math.floor((Math.random() * playField.width + extraPlayArea.width)) * boxLength,
+        y: Math.floor((Math.random() * playField.height + extraPlayArea.height)) * boxLength,
+    };
+}
+
+function checkCollision(snakeX, snakeY) {
+    return (
+        snakeX < boxLength ||
+        snakeX > boxLength * playField.width ||
+        snakeY < extraPlayArea.height * boxLength ||
+        snakeY > boxLength * playField.width
+    );
+}
+
+function moveSnake(snakeX, snakeY) {
+    if (dir === "left") snakeX -= boxLength;
+    if (dir === "right") snakeX += boxLength;
+    if (dir === "up") snakeY -= boxLength;
+    if (dir === "down") snakeY += boxLength;
+
+    let newSnakeLength = {
         x: snakeX,
         y: snakeY,
     };
 
     eatTail(newSnakeLength, snake);
     snake.unshift(newSnakeLength);
+}
 
+function drawText(text, color, size, x, y) {
+    ctx.fillStyle = color;
+    ctx.font = size + " Arial";
+    ctx.fillText(text, x, y);
+}
+
+const textCoordinates = {
+    score: {
+        x: 2,
+        y: 1.8,
+    },
+    record: {
+        x: 10,
+        y: 1.8,
+    },
 }
 
 // Reload the game

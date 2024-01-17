@@ -110,6 +110,22 @@ function drawSnakeSegment(x, y) {
     ctx.fillStyle = snakeColor;
     ctx.fillRect(x, y, boxLength, boxLength);
 }
+function drawText(text, color, size, x, y) {
+    ctx.fillStyle = color;
+    ctx.font = size + " Arial";
+    ctx.fillText(text, x, y);
+}
+
+const textCoordinates = {
+    score: {
+        x: 2,
+        y: 1.8,
+    },
+    record: {
+        x: 10,
+        y: 1.8,
+    },
+}
 
 function drawScore() {
     drawText(score, "yellow", "60px", boxLength * textCoordinates.score.x, boxLength * textCoordinates.score.y);
@@ -182,22 +198,6 @@ function moveSnake(snakeX, snakeY) {
     snake.unshift(newSnakeLength);
 }
 
-function drawText(text, color, size, x, y) {
-    ctx.fillStyle = color;
-    ctx.font = size + " Arial";
-    ctx.fillText(text, x, y);
-}
-
-const textCoordinates = {
-    score: {
-        x: 2,
-        y: 1.8,
-    },
-    record: {
-        x: 10,
-        y: 1.8,
-    },
-}
 
 // Reload the game
 const reload = () => {
